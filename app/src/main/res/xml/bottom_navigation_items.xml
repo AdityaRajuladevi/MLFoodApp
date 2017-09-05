@@ -15,5 +15,5 @@
     <tab
         id="@+id/tab_settings"
         icon="@drawable/ic_settings_black_24dp"
-        title="Settings" />
+        title="Logout" />
 </tabs>

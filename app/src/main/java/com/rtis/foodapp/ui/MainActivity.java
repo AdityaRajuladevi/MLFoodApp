@@ -2,6 +2,7 @@ package com.rtis.foodapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 import com.roughike.swipeselector.OnSwipeItemSelectedListener;
 import com.roughike.swipeselector.SwipeItem;
 import com.roughike.swipeselector.SwipeSelector;
@@ -48,6 +51,19 @@ public class MainActivity extends AppCompatActivity {
             String eachDayString = mDayNames[calendar.get(Calendar.DAY_OF_WEEK)] + " " + calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) + 1);
             swipeStrings.add(eachDayString);
             //Log.v("Day "," " +mDayNames[calendar.get(Calendar.DAY_OF_WEEK)] + " "+calendar.get(Calendar.DAY_OF_MONTH)+"/" + (calendar.get(Calendar.MONTH)+1));
+
+            BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
+            bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+                @Override
+                public void onTabSelected(@IdRes int tabId) {
+                    if (tabId == R.id.tab_settings) {
+                        // The tab with id R.id.tab_settings was selected,
+                        // change your content accordingly.
+                        logout();
+                    }
+                }
+            });
+
         }
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), swipeStrings);

@@ -109,6 +109,12 @@ public class SplashActivity extends AppCompatActivity {
                                 // login successful
                                 loginSuccessful(currentUser);
                             }
+
+                            @Override
+                            public void handleFault(BackendlessFault fault) {
+                                userShouldLogin();
+                                Logger.v("Check Login Error " + fault.toString());
+                            }
                         });
                     }
                 } else {
